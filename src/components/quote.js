@@ -5,21 +5,25 @@ class Quote extends Component {
     super(props);
 
     this.state = {
-      quote: "Ron Swanson",
+      quotes: [],
+      quote: "",
     };
   }
 
-  inRange(x, min, max) {
-    return (x - min) * (x - max) <= 0;
-  }
-
   getPortfolioItems = async () => {
-    const randomLine = Math.floor(Math.random() * 109);
     const quotesPromise = await fetch("http://localhost:5000/quotes");
     const quotes = await quotesPromise.json();
-    return (document.getElementById("quote").innerHTML =
-      quotes[Number(randomLine)]["line"]);
+    this.setState({ quotes });
   };
+
+  handleSingleQuote = () => {
+    const randomLine = Math.floor(Math.random() * this.state.quotes.length);
+    this.setState({quote: this.state.quotes[randomLine].line})
+  }
+
+  componentDidMount() {
+    this.getPortfolioItems()
+  }
 
   render() {
     return (
@@ -27,15 +31,15 @@ class Quote extends Component {
         <div className="button-wrapper">
           <button
             className="quote-button"
-            onClick={this.getPortfolioItems}
-            style={{ outline: "none;" }}
+            onClick={this.handleSingleQuote}
+            style={{ outline: "none" }}
           >
             GET A QUOTE
           </button>
         </div>
         <div className="quote-content">
           <h2>RON SWANSON SAYS:</h2>
-          <p id="quote"></p>
+          <p id="quote">{this.state.quote}</p>
         </div>
       </div>
     );
