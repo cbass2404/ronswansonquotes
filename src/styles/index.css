@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+div,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.App {
+  color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+}
+
+.quote-wrapper {
+  color: beige;
+  width: 50vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button-wrapper {
+  height: 50vh;
+  bottom: 3%;
+  position: absolute;
+}
+
+.quote-button {
+  color: beige;
+  background-color: black;
+  border: 2px solid beige;
+  border-radius: 5px;
+  outline: none;
+}
+
+.quote-content {
+  height: 50vh;
+  position: absolute;
+  bottom: 0;
+}
