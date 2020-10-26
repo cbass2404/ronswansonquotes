@@ -8,7 +8,6 @@ class Quote extends Component {
       quotes: [],
       quote: "",
       isLoading: true,
-      disableButton: true,
     };
   }
 
@@ -17,11 +16,10 @@ class Quote extends Component {
     const quotes = await quotesPromise.json();
     this.setState({ quotes });
     this.setState({ isLoading: false });
-    this.setState({ disableButton: false });
   };
 
   handleSingleQuote = () => {
-    const randomLine = Math.floor(Math.random() * this.state.quotes.length - 1);
+    const randomLine = Math.floor(Math.random() * this.state.quotes.length);
     this.setState({ quote: this.state.quotes[randomLine].line });
   };
 
@@ -38,7 +36,6 @@ class Quote extends Component {
             className="quote-button"
             onClick={this.handleSingleQuote}
             style={{ outline: "none" }}
-            disabled={this.state.disableButton}
           >
             GET A QUOTE
           </button>
